@@ -1,0 +1,16 @@
+./.config/go/telemetry/
+.ssh
+*/**/telemetry/**/*
+
+/.config/*
+!/.config/nvim/
+
+*.log
+
+.config/gedit/accels
+.config/github-copilot/versions.json
+.config/sqlitebrowser/sqlitebrowser.conf
+.config/tmux/plugins/catppuccin-tmux
+.config/tmux/plugins/tmux-continuum
+.config/tmux/plugins/tpm
+.config/QtProject.conf
