@@ -3,6 +3,8 @@ alias ls='eza -T -L 1 --group-directories-first --links --smart-group --changed 
 alias vim='nvim'
 alias neovim='nvim'
 alias c='clear'
+alias lzd='lazydocker'
+alias lzg='lazygit'
 
 # Path Exports
 
