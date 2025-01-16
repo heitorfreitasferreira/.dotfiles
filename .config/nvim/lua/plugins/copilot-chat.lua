@@ -9,6 +9,7 @@ return {
     opts = {
       window = {
         layout = "float",
+        height = 0.85,
       },
       model = "claude-3.5-sonnet",
       show_help = false,

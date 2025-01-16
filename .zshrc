@@ -100,10 +100,19 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 
-# Tmux conf
+#Tmux conf
 ## Open Tmux when opening ZSH
 if [ -z "$TMUX" ]; then
-  tmux new-session -A -s main
+  if [ -f "/etc/debian_version" ]; then
+    tmux new-session -A -s dev -c /home/heitor/backend-orcamento-nestjs -n "editor" \; \
+      send-keys 'vim .' Enter \; \
+      new-window -n "server" -c /home/heitor/backend-orcamento-nestjs \; \
+      send-keys 'yarn docker:up' Enter \; \
+      send-keys 'yarn start:dev' Enter \; \
+      select-window -t 1
+  else
+    tmux new-session -A -s main
+  fi
 fi
 
 eval $(thefuck --alias)

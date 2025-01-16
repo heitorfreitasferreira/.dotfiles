@@ -28,6 +28,13 @@ return {
         end,
         desc = "Harpoon Quick Menu",
       },
+      {
+        "<leader>hda",
+        function()
+          require("harpoon"):list():clear()
+        end,
+        desc = "Harpoon clear all",
+      },
     }
 
     for i = 1, 5 do

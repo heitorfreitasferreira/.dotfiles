@@ -2,11 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Comment
-vim.keymap.set("n", "<C-_>", function()
-  require("Comment.api").toggle.linewise.current()
-end, { noremap = true, silent = true })
-
 -- Don't leave visual mode when changing indent
 vim.api.nvim_set_keymap("x", ">", ">gv", { noremap = true })
 vim.api.nvim_set_keymap("x", "<", "<gv", { noremap = true })
@@ -18,3 +13,7 @@ vim.api.nvim_set_keymap("i", "<C-h>", "<Left>", {})
 vim.api.nvim_set_keymap("i", "<C-j>", "<Down>", {})
 vim.api.nvim_set_keymap("i", "<C-k>", "<Up>", {})
 vim.api.nvim_set_keymap("i", "<C-l>", "<Right>", {})
+
+-- Select all
+vim.api.nvim_set_keymap("i", "<C-a>", "<C-c>ggVG", {})
+vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", {})
