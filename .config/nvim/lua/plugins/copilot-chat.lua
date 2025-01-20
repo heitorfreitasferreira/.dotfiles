@@ -13,7 +13,7 @@ return {
       },
       model = "claude-3.5-sonnet",
       show_help = false,
-      auto_insert_mode = true,
+      -- auto_insert_mode = false,
     },
     setup = function()
       chat_autocomplete = false
@@ -30,24 +30,24 @@ return {
       },
       -- Toggle da janela do chat
       {
-        "<leader>cp",
+        "<leader>cpo",
         "<cmd>CopilotChatToggle<cr>",
         desc = "Toggle chat",
       },
       -- Explicar código selecionado
-      {
-        "<leader>cpe",
-        ":CopilotChatExplain<cr>",
-        mode = { "n", "v" },
-        desc = "Explain code",
-      },
+      -- {
+      --   "<leader>cpe",
+      --   ":CopilotChatExplain<cr>",
+      --   mode = { "n", "v" },
+      --   desc = "Explain code",
+      -- },
       -- Revisar código selecionado
-      {
-        "<leader>cpr",
-        ":CopilotChatReview<cr>",
-        mode = { "n", "v" },
-        desc = "Review code",
-      },
+      -- {
+      --   "<leader>cpr",
+      --   ":CopilotChatReview<cr>",
+      --   mode = { "n", "v" },
+      --   desc = "Review code",
+      -- },
       -- Refatorar código selecionado
       {
         "<leader>cpf",
@@ -56,12 +56,12 @@ return {
         desc = "Fix/Refactor code",
       },
       -- Otimizar código selecionado
-      {
-        "<leader>cpo",
-        ":CopilotChatOptimize<cr>",
-        mode = { "n", "v" },
-        desc = "Optimize code",
-      },
+      -- {
+      --   "<leader>cpo",
+      --   ":CopilotChatOptimize<cr>",
+      --   mode = { "n", "v" },
+      --   desc = "Optimize code",
+      -- },
       -- Gerar testes
       {
         "<leader>cpt",
@@ -70,12 +70,12 @@ return {
         desc = "Generate tests",
       },
       -- Gerar documentação
-      {
-        "<leader>cpd",
-        ":CopilotChatDocs<cr>",
-        mode = { "n", "v" },
-        desc = "Document code",
-      },
+      -- {
+      --   "<leader>cpd",
+      --   ":CopilotChatDocs<cr>",
+      --   mode = { "n", "v" },
+      --   desc = "Document code",
+      -- },
       -- Reset chat
       {
         "<leader>cpr",

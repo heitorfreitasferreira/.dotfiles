@@ -33,11 +33,11 @@ return {
     "MunifTanjim/nui.nvim",
   },
   opts = {
-    close_if_last_window = true,
+    close_if_last_window = false,
     popup_border_style = "rounded",
     hijack_netrw_behavior = "disabled",
     window = {
-      position = "right",
+      position = "float",
       width = 40,
       mappings = {
         ["<C-u>"] = { "scroll_preview", config = { direction = 10 } },

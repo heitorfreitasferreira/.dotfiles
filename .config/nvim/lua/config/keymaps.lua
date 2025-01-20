@@ -17,3 +17,6 @@ vim.api.nvim_set_keymap("i", "<C-l>", "<Right>", {})
 -- Select all
 vim.api.nvim_set_keymap("i", "<C-a>", "<C-c>ggVG", {})
 vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", {})
+
+-- Enlarge virtual text (errors)
+vim.api.nvim_set_keymap("n", "ç", "<cmd>lua vim.diagnostic.open_float()<CR>", {})
