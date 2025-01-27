@@ -126,3 +126,10 @@ eval $(thefuck --alias)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ -e /home/heitor/.nix-profile/etc/profile.d/nix.sh ]; then . /home/heitor/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# bun completions
+[ -s "/home/heitor/.bun/_bun" ] && source "/home/heitor/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
