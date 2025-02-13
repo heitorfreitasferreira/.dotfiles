@@ -1,0 +1,45 @@
+{
+  "NestJS UseCase": {
+    "prefix": "usecase",
+    "body": [
+      "import { Injectable } from '@nestjs/common';",
+      "import { DefaultUseCase } from '@shared/application/use-cases/default.use-case';",
+      "",
+      "export type ${1:Name}UseCaseInput = void;",
+      "export type ${1:Name}UseCaseOutput = Promise<void>;",
+      "",
+      "@Injectable()",
+      "export class ${1:Name}UseCase",
+      "  implements DefaultUseCase<${1:Name}UseCaseInput, ${1:Name}UseCaseOutput>",
+      "{",
+      "  constructor() {}",
+      "",
+      "  async execute(input: ${1:Name}UseCaseInput): ${1:Name}UseCaseOutput {",
+      "    return;",
+      "  }",
+      "}"
+    ],
+    "description": "Create a NestJS UseCase class"
+  },
+  "Injectable Atribute": {
+    "prefix": "pro",
+    "body": "private readonly ${1:atr}: ${2:Class},\n"
+  },
+  "Repository": {
+    "prefix": "repo",
+    "body": [
+      "import { InjectModel } from '@nestjs/mongoose';",
+      "import { BaseCrudRepository } from '@shared/infrastructure/persistence/repository/base-crud.repository';",
+      "import { AggregatePaginateModel, PaginateModel } from 'mongoose';",
+      "",
+      "export class ${1:Name}Repository extends BaseCrudRepository<${1:Name}Document> {",
+      "  constructor(",
+      "    @InjectModel(${1:Name}.name)",
+      "    readonly model: PaginateModel<${1:Name}Document> & AggregatePaginateModel<${1:Name}Document>,",
+      "  ) {",
+      "    super(model);",
+      "  }",
+      "}"
+    ]
+  }
+}

@@ -104,11 +104,20 @@ eval "$(zoxide init zsh)"
 ## Open Tmux when opening ZSH
 if [ -z "$TMUX" ]; then
   if [ -f "/etc/debian_version" ]; then
-    tmux new-session -A -s dev -c /home/heitor/backend-orcamento-nestjs -n "editor" \; \
+    tmux new-session -A -s back -c /home/heitor/backend-orcamento-nestjs -n "editor" \; \
       send-keys 'vim .' Enter \; \
       new-window -n "server" -c /home/heitor/backend-orcamento-nestjs \; \
       send-keys 'yarn docker:up' Enter \; \
       send-keys 'yarn start:dev' Enter \; \
+      select-window -t 1
+    # Create frontend session if it doesn't exist
+    tmux new-session -d -s front -c /home/heitor/frontend-orcamento-react -n "editor" \; \
+      send-keys 'vim .' Enter \; \
+      new-window -n "server" -c /home/heitor/frontend-orcamento-react \; \
+      send-keys 'git pull' Enter \; \
+      send-keys 'nvm use 18' Enter \; \
+      send-keys 'yarn' Enter \; \
+      send-keys 'yarn start' Enter \; \
       select-window -t 1
   else
     tmux new-session -A -s main
