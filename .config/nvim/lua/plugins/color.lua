@@ -1,4 +1,8 @@
-return {}
+return {
+  "folke/tokyonight.nvim",
+  lazy = true,
+  opts = { style = "night" },
+}
 -- return {
 --   "projekt0n/github-nvim-theme",
 --   name = "github-theme",
