@@ -8,11 +8,12 @@ alias lzg='lazygit'
 
 # Path Exports
 
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:"/usr/local/go/bin"
 export PATH=$PATH:"/mnt/c/Users/heito/AppData/Local/Programs/Microsoft VS Code/bin"
-export PATH="$PATH:/opt/nvim-linux64/bin"
-export PATH="$PATH:/home/heitor/.fzf/bin"
-export PATH="$PATH:/home/heitor/.local/bin"
+export PATH="$PATH:$HOME/.fzf/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export NVM_DIR="$HOME/.nvm"
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -54,8 +55,6 @@ zinit light Aloxaf/fzf-tab
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
@@ -97,48 +96,33 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Shell integrations
 
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 
 #Tmux conf
 ## Open Tmux when opening ZSH
 if [ -z "$TMUX" ]; then
   if [ -f "/etc/debian_version" ]; then
-    tmux new-session -A -s back -c /home/heitor/backend-orcamento-nestjs -n "editor" \; \
+    tmux new-session -A -s back -c $HOME/agromercantil-erp/erp/ -n "editor" \; \
       send-keys 'vim .' Enter \; \
-      new-window -n "server" -c /home/heitor/backend-orcamento-nestjs \; \
-      send-keys 'yarn docker:up' Enter \; \
-      send-keys 'yarn start:dev' Enter \; \
+      new-window -n "server" -c $HOME/agromercantil-erp/erp/ \; \
+      send-keys 'mvn spring-boot:run' Enter \; \
+      new-window -n "docker" -c $HOME/agromercantil-db/ \; \
+      send-keys 'lazydocker' Enter \; \
       select-window -t 1
     # Create frontend session if it doesn't exist
-    tmux new-session -d -s front -c /home/heitor/frontend-orcamento-react -n "editor" \; \
+    tmux new-session -d -s front -c $HOME/agromercantil-erp/erp-html/ -n "editor" \; \
       send-keys 'vim .' Enter \; \
-      new-window -n "server" -c /home/heitor/frontend-orcamento-react \; \
-      send-keys 'git pull' Enter \; \
-      send-keys 'nvm use 18' Enter \; \
-      send-keys 'yarn' Enter \; \
-      send-keys 'yarn start' Enter \; \
+      new-window -n "server" -c $HOME/agromercantil-erp/erp-html/ \; \
+      send-keys 'gulp dev' Enter \; \
       select-window -t 1
   else
     tmux new-session -A -s main
   fi
 fi
 
-eval $(thefuck --alias)
-
-. "/home/heitor/.deno/env"
-
-# Node Versioner Manager
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if [ -e /home/heitor/.nix-profile/etc/profile.d/nix.sh ]; then . /home/heitor/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-# bun completions
-[ -s "/home/heitor/.bun/_bun" ] && source "/home/heitor/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
