@@ -11,7 +11,7 @@ return {
         layout = "float",
         height = 0.85,
       },
-      model = "claude-3.5-sonnet",
+      model = "gpt-4.1",
       show_help = false,
       -- auto_insert_mode = false,
     },
