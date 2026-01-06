@@ -20,3 +20,10 @@ vim.api.nvim_create_autocmd({ "bufwritepre" }, {
     })
   end,
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function()
+    pcall(vim.lsp.enable, "copilot")
+  end,
+  once = true,
+})

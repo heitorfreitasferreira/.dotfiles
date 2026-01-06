@@ -4,6 +4,7 @@
 
 /.config/*
 !/.config/nvim/
+!/.config/opencode/
 
 *.log
 
