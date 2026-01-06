@@ -5,12 +5,13 @@ return {
   { "rebelot/kanagawa.nvim", name = "kanagawa" },
   { "nyoom-engineering/nyoom.nvim", name = "nyoom" },
   { "jacoborus/tender.vim", name = "tender" },
+  { "loctvl842/monokai-pro.nvim", name = "monokai-pro" },
+  { "Mofiqul/vscode.nvim", name = "vscode" },
+  { "navarasu/onedark.nvim", name = "onedark" },
+  { "nickkadutskyi/jb.nvim", name = "jetbrains" },
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    -- config = function()
-    --   vim.cmd("colorscheme rose-pine")
-    -- end,
   },
   -- Explorador de arquivos
   {
