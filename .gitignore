@@ -5,6 +5,7 @@
 /.config/*
 !/.config/nvim/
 !/.config/opencode/
+!/.config/zsh/
 
 *.log
 
