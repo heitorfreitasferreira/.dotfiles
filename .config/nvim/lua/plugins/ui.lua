@@ -9,6 +9,7 @@ return {
   { "Mofiqul/vscode.nvim", name = "vscode" },
   { "navarasu/onedark.nvim", name = "onedark" },
   { "nickkadutskyi/jb.nvim", name = "jetbrains" },
+  { "Mofiqul/dracula.nvim", name = "dracula" },
   {
     "rose-pine/neovim",
     name = "rose-pine",
