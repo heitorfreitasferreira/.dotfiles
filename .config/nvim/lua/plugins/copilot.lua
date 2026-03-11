@@ -46,30 +46,21 @@ return {
       {
         "<leader>aa",
         function()
-          require("sidekick.cli").toggle()
+          require("sidekick.cli").toggle({ name = "opencode", focus = true })
         end,
         desc = "Sidekick Toggle CLI",
       },
       {
         "<leader>as",
         function()
-          require("sidekick.cli").select()
+          require("sidekick.cli").select({ filter = { installed = true } })
         end,
-        -- Or to select only installed tools:
-        -- require("sidekick.cli").select({ filter = { installed = true } })
         desc = "Select CLI",
-      },
-      {
-        "<leader>ad",
-        function()
-          require("sidekick.cli").close()
-        end,
-        desc = "Detach a CLI Session",
       },
       {
         "<leader>at",
         function()
-          require("sidekick.cli").send({ msg = "{this}" })
+          require("sidekick.cli").send({ msg = "{this}", name = "opencode", focus = true })
         end,
         mode = { "x", "n" },
         desc = "Send This",
@@ -77,14 +68,14 @@ return {
       {
         "<leader>af",
         function()
-          require("sidekick.cli").send({ msg = "{file}" })
+          require("sidekick.cli").send({ msg = "{file}", name = "opencode", focus = true })
         end,
         desc = "Send File",
       },
       {
         "<leader>av",
         function()
-          require("sidekick.cli").send({ msg = "{selection}" })
+          require("sidekick.cli").send({ msg = "{selection}", name = "opencode", focus = true })
         end,
         mode = { "x" },
         desc = "Send Visual Selection",
@@ -92,24 +83,10 @@ return {
       {
         "<leader>ap",
         function()
-          require("sidekick.cli").prompt()
+          require("sidekick.cli").prompt({ name = "opencode", focus = true })
         end,
         mode = { "n", "x" },
         desc = "Sidekick Select Prompt",
-      },
-      {
-        "<leader>ac",
-        function()
-          require("sidekick.cli").toggle({ name = "cursor", focus = true })
-        end,
-        desc = "Sidekick Toggle Cursor",
-      },
-      {
-        "<leader>ag",
-        function()
-          require("sidekick.cli").toggle({ name = "gemini", focus = true })
-        end,
-        desc = "Sidekick Toggle Cursor",
       },
     },
   },
