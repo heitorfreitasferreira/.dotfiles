@@ -11,6 +11,57 @@ return {
       },
     },
     cmd = "Copilot",
+    config = function()
+      require("copilot").setup({
+        nes = {
+          enabled = true,
+          keymap = {
+            accept_and_goto = "<leader>p",
+            accept = "<C-y>",
+            dismiss = "<Esc>",
+          },
+        },
+      })
+    end,
+  },
+  {
+    "Exafunction/codeium.nvim",
+    enabled = true,
+    cmd = "Codeium",
+    event = "InsertEnter",
+    build = ":Codeium Auth",
+    opts = {
+      enable_cmp_source = false,
+      virtual_text = {
+        enabled = false,
+        key_bindings = {
+          accept = false,
+          clear = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+        },
+      },
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = { "Exafunction/codeium.nvim" },
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      opts.sources.default = opts.sources.default or {}
+
+      if not vim.tbl_contains(opts.sources.default, "codeium") then
+        table.insert(opts.sources.default, "codeium")
+      end
+
+      opts.sources.providers = opts.sources.providers or {}
+      opts.sources.providers.codeium = vim.tbl_deep_extend("force", opts.sources.providers.codeium or {}, {
+        name = "Codeium",
+        module = "codeium.blink",
+        async = true,
+      })
+    end,
   },
   {
     "folke/sidekick.nvim",
@@ -23,6 +74,7 @@ return {
         },
       },
     },
+
     keys = {
       {
         "<tab>",
