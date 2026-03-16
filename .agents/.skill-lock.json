@@ -1,0 +1,117 @@
+{
+  "version": 3,
+  "skills": {
+    "test-driven-development": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers.git",
+      "skillPath": "skills/test-driven-development/SKILL.md",
+      "skillFolderHash": "98904a7d8e0e04b9bd46220b9b17298f45fe0b72",
+      "installedAt": "2026-03-13T17:02:42.351Z",
+      "updatedAt": "2026-03-13T17:02:42.351Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "c2f31172b6f256272305a5e6e7228b258446899f",
+      "installedAt": "2026-03-13T17:02:54.753Z",
+      "updatedAt": "2026-03-13T17:02:54.753Z"
+    },
+    "refactor": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/awesome-copilot.git",
+      "skillPath": "skills/refactor/SKILL.md",
+      "skillFolderHash": "01cfb6a412faf9d680880cc3f631c419121a9916",
+      "installedAt": "2026-03-13T17:10:20.001Z",
+      "updatedAt": "2026-03-13T17:10:20.001Z"
+    },
+    "django-expert": {
+      "source": "vintasoftware/django-ai-plugins",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vintasoftware/django-ai-plugins.git",
+      "skillPath": "plugins/django-expert/skills/SKILL.md",
+      "skillFolderHash": "dca0dd3dba703209fe7c9ec6ceac5be3f4b99687",
+      "installedAt": "2026-03-13T17:13:06.352Z",
+      "updatedAt": "2026-03-13T17:13:06.352Z"
+    },
+    "django-orm-patterns": {
+      "source": "thebushidocollective/han",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/thebushidocollective/han.git",
+      "skillPath": "plugins/frameworks/django/skills/django-orm-patterns/SKILL.md",
+      "skillFolderHash": "4f2b3e110e7639b53945c43a1740ec79f2034702",
+      "installedAt": "2026-03-13T17:13:15.276Z",
+      "updatedAt": "2026-03-13T17:13:15.276Z"
+    },
+    "django-patterns": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/affaan-m/everything-claude-code.git",
+      "skillPath": "skills/django-patterns/SKILL.md",
+      "skillFolderHash": "d48dfdc4c50a5097b19d17476fcd3920d862e53b",
+      "installedAt": "2026-03-13T17:13:51.305Z",
+      "updatedAt": "2026-03-13T17:13:51.305Z"
+    },
+    "jenkins-pipeline": {
+      "source": "aj-geddes/useful-ai-prompts",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/aj-geddes/useful-ai-prompts.git",
+      "skillPath": "skills/jenkins-pipeline/SKILL.md",
+      "skillFolderHash": "24cb6dbe5b680664486cf713d83f5ca5fb5bc290",
+      "installedAt": "2026-03-13T18:47:04.394Z",
+      "updatedAt": "2026-03-13T18:47:04.394Z"
+    },
+    "docker-compose-orchestration": {
+      "source": "manutej/luxor-claude-marketplace",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/manutej/luxor-claude-marketplace.git",
+      "skillPath": "plugins/luxor-devops-suite/skills/docker-compose-orchestration/SKILL.md",
+      "skillFolderHash": "065096b5fb395b630c516d3de184ea06f669c6f4",
+      "installedAt": "2026-03-13T18:47:07.477Z",
+      "updatedAt": "2026-03-13T18:47:07.477Z"
+    },
+    "docker-security-guide": {
+      "source": "josiahsiegel/claude-plugin-marketplace",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/josiahsiegel/claude-plugin-marketplace.git",
+      "skillPath": "plugins/docker-master/skills/docker-security-guide/SKILL.md",
+      "skillFolderHash": "51674d1a725a99518717f13be14fca3d9a3ab9c5",
+      "installedAt": "2026-03-13T18:47:11.651Z",
+      "updatedAt": "2026-03-13T18:47:11.651Z"
+    },
+    "deployment-rollback": {
+      "source": "sgcarstrends/sgcarstrends",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sgcarstrends/sgcarstrends.git",
+      "skillPath": ".claude/skills/deployment-rollback/SKILL.md",
+      "skillFolderHash": "a280b036f0e721a09742bc3d6b1cdd9e27528b64",
+      "installedAt": "2026-03-13T18:47:14.682Z",
+      "updatedAt": "2026-03-13T18:47:14.682Z"
+    },
+    "monitoring-observability": {
+      "source": "ahmedasmar/devops-claude-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ahmedasmar/devops-claude-skills.git",
+      "skillPath": "monitoring-observability/SKILL.md",
+      "skillFolderHash": "60af44177dda8dbd4d1231b9dfc8cd87a48dbc90",
+      "installedAt": "2026-03-13T18:47:17.380Z",
+      "updatedAt": "2026-03-13T18:47:17.380Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-cli",
+    "opencode"
+  ]
+}
