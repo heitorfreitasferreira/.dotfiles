@@ -99,6 +99,33 @@
       "skillFolderHash": "60af44177dda8dbd4d1231b9dfc8cd87a48dbc90",
       "installedAt": "2026-03-13T18:47:17.380Z",
       "updatedAt": "2026-03-13T18:47:17.380Z"
+    },
+    "council": {
+      "source": "boshu2/agentops",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/boshu2/agentops.git",
+      "skillPath": "skills/council/SKILL.md",
+      "skillFolderHash": "2a4abcb09603cf6c2386b0446a118c0f77b5fd85",
+      "installedAt": "2026-04-24T14:20:04.461Z",
+      "updatedAt": "2026-04-24T14:20:04.461Z"
+    },
+    "santa-method": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/affaan-m/everything-claude-code.git",
+      "skillPath": "skills/santa-method/SKILL.md",
+      "skillFolderHash": "a205f0a21b6439c435083d2e03a9736ebc3a8b7b",
+      "installedAt": "2026-04-24T14:22:03.245Z",
+      "updatedAt": "2026-04-24T14:22:03.245Z"
+    },
+    "github-actions-docs": {
+      "source": "xixu-me/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/xixu-me/skills.git",
+      "skillPath": "skills/github-actions-docs/SKILL.md",
+      "skillFolderHash": "518c85da555f91c346813aa5bb3cc62f9db8bfb3",
+      "installedAt": "2026-04-30T19:48:17.293Z",
+      "updatedAt": "2026-04-30T19:48:17.293Z"
     }
   },
   "dismissed": {
@@ -106,12 +133,17 @@
   },
   "lastSelectedAgents": [
     "amp",
+    "antigravity",
     "cline",
     "codex",
     "cursor",
+    "deepagents",
+    "dexto",
+    "firebender",
     "gemini-cli",
     "github-copilot",
     "kimi-cli",
-    "opencode"
+    "opencode",
+    "warp"
   ]
 }
