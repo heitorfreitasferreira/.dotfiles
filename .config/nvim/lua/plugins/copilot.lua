@@ -1,7 +1,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     dependencies = {
       {
         "copilotlsp-nvim/copilot-lsp",
@@ -13,13 +13,11 @@ return {
     cmd = "Copilot",
     config = function()
       require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
         nes = {
           enabled = true,
-          keymap = {
-            accept_and_goto = "<leader>p",
-            accept = "<C-y>",
-            dismiss = "<Esc>",
-          },
+          auto_trigger = false,
         },
       })
     end,
@@ -46,7 +44,7 @@ return {
   {
     "saghen/blink.cmp",
     optional = true,
-    dependencies = { "Exafunction/codeium.nvim" },
+    dependencies = { "Exafunction/codeium.nvim", "fang2hou/blink-copilot" },
     opts = function(_, opts)
       opts.sources = opts.sources or {}
       opts.sources.default = opts.sources.default or {}
@@ -55,10 +53,19 @@ return {
         table.insert(opts.sources.default, "codeium")
       end
 
+      if not vim.tbl_contains(opts.sources.default, "copilot") then
+        table.insert(opts.sources.default, "copilot")
+      end
+
       opts.sources.providers = opts.sources.providers or {}
       opts.sources.providers.codeium = vim.tbl_deep_extend("force", opts.sources.providers.codeium or {}, {
         name = "Codeium",
         module = "codeium.blink",
+        async = true,
+      })
+      opts.sources.providers.copilot = vim.tbl_deep_extend("force", opts.sources.providers.copilot or {}, {
+        name = "copilot",
+        module = "blink-copilot",
         async = true,
       })
     end,
@@ -66,7 +73,14 @@ return {
   {
     "folke/sidekick.nvim",
     opts = {
-      -- add any options here
+      nes = {
+        debounce = 500,
+      },
+      copilot = {
+        status = {
+          level = vim.log.levels.OFF,
+        },
+      },
       cli = {
         mux = {
           backend = "tmux",
