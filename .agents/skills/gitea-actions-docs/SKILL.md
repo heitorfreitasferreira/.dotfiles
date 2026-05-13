@@ -15,6 +15,7 @@ Use this skill when the request is about:
 - act runner (`act_runner`): install, registration, labels, Docker/host modes, and security considerations
 - Built-in job token behavior (`GITEA_TOKEN`) and `permissions:` in workflows
 - Compatibility questions (what is supported or unsupported vs GitHub Actions)
+- Using the Gitea CLI (`tea`) to gather context about Actions (workflows, runs, logs, secrets, variables) to answer questions grounded in real instance data
 
 Do not use this skill for:
 
@@ -36,25 +37,53 @@ Decide which bucket the question belongs to before searching:
 
 If you need a quick starting point, load `references/topic-map.md` and jump to the closest section.
 
-### 2. Search official Gitea docs first
+### 2. Gather context with `tea` (Gitea CLI) when available
+
+If the user wants debugging, verification, or instance-specific answers ("what ran?", "why failed?", "what secrets/vars exist?"), prefer collecting evidence with `tea` before relying on documentation.
+
+Notes:
+
+- `tea` tries to use the git repo in the current working directory for context.
+- If you are not in the right repo directory, or want to override, use `--repo` (path or `owner/name`), `--remote`, and/or `--login`.
+
+Common context commands:
+
+- Identity and auth sanity:
+  - `tea whoami`
+  - `tea logins ls`
+- Workflows:
+  - `tea actions workflows list`
+  - `tea actions workflows view <workflow>`
+  - `tea actions workflows dispatch <workflow> --ref <branch-or-tag> --input key=value`
+- Runs and logs:
+  - `tea actions runs list --limit 30` (add filters like `--branch`, `--event`, `--status`, `--since`)
+  - `tea actions runs view <run> --jobs`
+  - `tea actions runs logs <run> --job <job-id>` (omit `--job` to show all)
+- Secrets and variables (when the question is about configuration):
+  - `tea actions secrets list`
+  - `tea actions variables list`
+
+If there is no dedicated `tea` subcommand for what you need, use `tea api` as a last resort to call the Gitea API (authenticated), but keep answers anchored in the most authoritative source available.
+
+### 3. Search official Gitea docs first
 
 - Treat `docs.gitea.com` as the source of truth for Gitea Actions behavior.
 - Prefer pages under <https://docs.gitea.com/usage/actions>.
 - Docs are versioned; if behavior may differ, ask for the user's Gitea version and act runner version.
 - Search with the user's exact terms plus focused phrases like `GITEA_TOKEN`, `permissions`, `act runner`, `labels`, `secrets`, `variables`, or `compared to GitHub`.
 
-### 3. Use GitHub docs as a fallback (with explicit compatibility checks)
+### 4. Use GitHub docs as a fallback (with explicit compatibility checks)
 
 - Use GitHub Actions docs for GitHub-compatible YAML reference when the Gitea docs do not cover the needed detail.
 - Always validate the suggestion against Gitea compatibility docs before presenting it as supported.
 - If you rely on GitHub docs, label it explicitly as fallback and include at least one Gitea link that anchors the compatibility claim (comparison/FAQ/variables/token permissions).
 
-### 4. Open the best page before answering
+### 5. Open the best page before answering
 
 - Read the most relevant page, and the exact section when practical.
 - If a page appears renamed, moved, or incomplete, say that explicitly and return the nearest authoritative pages instead of guessing.
 
-### 5. Answer with docs-grounded guidance
+### 6. Answer with docs-grounded guidance
 
 - Start with a direct answer in plain language.
 - Include exact docs links, not just landing pages.
@@ -80,6 +109,7 @@ Keep citations close to the claim they support.
 - Using `.github/workflows/` paths instead of `.gitea/workflows/`
 - Suggesting advanced GitHub expressions or permission scopes without checking Gitea compatibility
 - Linking a landing page when a narrower page exists
+- Skipping available instance evidence: if `tea` is available and the user is asking about what actually ran/failed, prefer `tea actions runs view/logs` output over guesswork
 
 ## Bundled Reference
 
