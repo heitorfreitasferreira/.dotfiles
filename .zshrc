@@ -5,21 +5,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-  # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
 
 # Source modular configurations
-source ~/.dotfiles/.config/zsh/paths.zsh
-source ~/.dotfiles/.config/zsh/aliases.zsh
-source ~/.dotfiles/.config/zsh/plugins.zsh
-source ~/.dotfiles/.config/zsh/history.zsh
-source ~/.dotfiles/.config/zsh/completion.zsh
-source ~/.dotfiles/.config/zsh/integrations.zsh
-source ~/.dotfiles/.config/zsh/keybindings.zsh
+source ~/.config/zsh/paths.zsh
+source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/plugins.zsh
+source ~/.config/zsh/history.zsh
+source ~/.config/zsh/completion.zsh
+source ~/.config/zsh/integrations.zsh
+source ~/.config/zsh/keybindings.zsh
 
-source ~/.dotfiles/scripts/frete_mercantil.zsh
+
+source ~/.config/zsh/frete_mercantil.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
