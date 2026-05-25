@@ -26,7 +26,7 @@ reads each judge's output file sequentially with the Read tool and synthesizes.
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  Phase 1a: Select spawn backend                                 │
-│  codex_subagents | claude_teams | background_fallback           │
+│  opencode_task | codex_subagents | claude_teams | background    │
 │  Team lead = spawner (this agent)                               │
 └─────────────────────────────────────────────────────────────────┘
                               │
@@ -34,19 +34,19 @@ reads each judge's output file sequentially with the Read tool and synthesizes.
             ▼                                   ▼
 ┌───────────────────────┐           ┌───────────────────────┐
 │  RUNTIME-NATIVE JUDGES│           │     CODEX AGENTS      │
-│ (spawn_agent or teams)│           │  (Bash tool, parallel)│
-│                       │           │  Agent 1 (independent │
-│  Agent 1 (independent │           │    or with preset)    │
-│    or with preset)    │           │  Agent 2              │
-│  Agent 2              │           │  Agent 3              │
-│  Agent 3 (--deep only)│           │  (--mixed only)       │
-│  (--deep/--mixed only)│           │                       │
-│                       │           │  Output: JSON + MD    │
-│  Write files, then    │           │  Files: .agents/      │
-│ wait()/SendMessage to │           │    council/codex-*    │
-│ lead                  │           │                       │
+│ (task, spawn_agent,  │           │  (Bash tool, parallel)│
+│  or teams)            │           │  Agent 1 (independent │
+│                       │           │    or with preset)    │
+│  Agent 1 (independent │           │  Agent 2              │
+│    or with preset)    │           │  Agent 3              │
+│  Agent 2              │           │  (--mixed only)       │
+│  Agent 3 (--deep only)│           │                       │
+│  (--deep/--mixed only)│           │  Output: JSON + MD    │
+│                       │           │  Files: .agents/      │
+│  Write files, then    │           │    council/codex-*    │
+│  signal lead          │           │                       │
 │  Files: .agents/      │           └───────────────────────┘
-│    council/claude-*   │                       │
+│    council/judge-*    │                       │
 └───────────────────────┘                       │
             │                                   │
             └─────────────────┬─────────────────┘
@@ -121,6 +121,7 @@ For schema details and an example, see `reviewer-config-example.md`.
 | All Codex CLI agents fail after a successful pre-flight | Return error; `--mixed` cannot silently degrade to single-vendor review |
 | All agents fail | Return error, suggest retry |
 | Codex CLI not installed while `--mixed` is set | Hard error before spawning any judges |
+| OpenCode backend (task tool) | Use `references/backend-opencode.md` — model inherited, no debate, no mixed |
 | No multi-agent capability | Fall back to `--quick` (inline single-agent review) |
 | No agent messaging | `--debate` unavailable, single-round review only |
 | Output dir missing | Create `.agents/council/` automatically |

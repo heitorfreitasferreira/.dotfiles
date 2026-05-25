@@ -54,16 +54,25 @@ export AGENTOPS_MODEL_TIER=budget           # global default
 export AGENTOPS_COUNCIL_MODEL_TIER=quality  # council-specific override
 ```
 
+## OpenCode Environments
+
+In OpenCode, subagents **inherit the model from the parent agent**. The `COUNCIL_CLAUDE_MODEL` env var and `--profile` flags have **no effect** on which model OpenCode subagents use.
+
+For OpenCode:
+- Set `COUNCIL_CLAUDE_MODEL=` and `COUNCIL_EXPLORER_MODEL=` to empty to prevent any Claude model fallback from profiles
+- Do not use `--profile` — it maps to Claude model names (opus/sonnet/haiku) that don't apply
+- The session model (e.g., deepseek-v4-flash-free) is automatically used by all spawned subagents
+
 ## Precedence
 
 Profiles are a convenience shortcut. Explicit flags and env vars always override:
 
-1. Explicit env var (`COUNCIL_CLAUDE_MODEL=...`) --- highest priority
+1. Explicit env var (`COUNCIL_CLAUDE_MODEL=...`) --- highest priority (no effect in OpenCode)
 2. Explicit flags (`--count=N`, `--deep`, `--mixed`) --- override profile settings
-3. `--profile=<name>` --- sets defaults
+3. `--profile=<name>` --- sets defaults (avoid in OpenCode)
 4. Built-in defaults --- lowest priority
 
-When `--profile=thorough` is set but `--count=4` is also provided, the count comes from `--count` (4 judges), while the model comes from the profile (opus).
+When `--profile=thorough` is set but `--count=4` is also provided, the count comes from `--count` (4 judges), while the model comes from the profile (opus). In OpenCode, the profile's model setting is ignored — the inherited session model is used instead.
 
 ## Report Header
 

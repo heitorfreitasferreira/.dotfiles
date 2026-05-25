@@ -4,18 +4,19 @@
 
 Council requires these runtime capabilities. Map them to whatever your agent harness provides.
 
-**For concrete tool call examples per backend, read the matching shared reference:**
+**For concrete tool call examples per backend, read the matching reference:**
+- **OpenCode (task tool)** → `references/backend-opencode.md` — **preferred for OpenCode environments**
 - Claude Native Teams → `skills/shared/references/backend-claude-teams.md`
 - Codex Sub-Agents / CLI → `skills/shared/references/backend-codex-subagents.md`
 - Background Tasks → `skills/shared/references/backend-background-tasks.md`
 - Inline → `skills/shared/references/backend-inline.md`
 
-| Capability | Required for | What it does |
-|------------|-------------|-------------|
-| **Spawn parallel subagent** | All modes except `--quick` | Create N judges that run concurrently, each with a prompt |
-| **Agent-to-agent messaging** | `--debate` only | Send a message to a running judge (for R2 verdict exchange) |
-| **Graceful shutdown** | Cleanup | Terminate judges after consolidation |
-| **Shared filesystem** | All modes | Judges write output files to `.agents/council/` |
+| Capability | Required for | What it does | OpenCode |
+|------------|-------------|-------------|----------|
+| **Spawn parallel subagent** | All modes except `--quick` | Create N judges that run concurrently, each with a prompt | ✅ via `task()` |
+| **Agent-to-agent messaging** | `--debate` only | Send a message to a running judge (for R2 verdict exchange) | ❌ |
+| **Graceful shutdown** | Cleanup | Terminate judges after consolidation | ❌ Auto-terminate |
+| **Shared filesystem** | All modes | Judges write output files to `.agents/council/` | ✅ |
 
 If **spawn** is unavailable, degrade to `--quick` (inline single-agent).
 If **messaging** is unavailable, `--debate` degrades to single-round review.
@@ -73,6 +74,43 @@ Shut down all judges via runtime's shutdown mechanism. Cleanup MUST succeed even
 2. Wait up to 30s for acknowledgment
 3. If any judge doesn't respond, log warning, proceed anyway
 4. Always run cleanup — lingering agents pollute future sessions
+
+**OpenCode:** No cleanup needed. `task()` subagents self-terminate automatically. Skip this phase.
+
+---
+
+## OpenCode Backend
+
+When running inside OpenCode, spawning uses the `task` tool instead of Claude Teams or Codex CLI:
+
+### Spawning (parallel)
+
+```python
+# All judges spawned in the same message — they run in parallel
+task(subagent_type="general", description="Council judge-1", prompt="...")
+task(subagent_type="general", description="Council judge-2", prompt="...")
+task(subagent_type="general", description="Council judge-3", prompt="...")  # --deep
+```
+
+### Explorers (read-only)
+
+```python
+task(subagent_type="explore", description="Explorer security", prompt="...")
+```
+
+### Key differences from Claude/Codex backends
+
+| Aspect | Claude/Codex | OpenCode |
+|--------|-------------|----------|
+| Spawn call | `TeamCreate`+`Task`, `spawn_agent`, `codex exec` | `task(subagent_type="general", ...)` |
+| Model | Set via env var or flag | **Inherited from parent** — no override possible |
+| Cleanup | `TeamDelete`, `close_agent`, `TaskStop` | Automatic — nothing to do |
+| Debate | 2-round via `SendMessage` | Not available |
+| Mixed | Claude + Codex judges | Not available |
+
+### Full walkthrough
+
+See `references/backend-opencode.md` for the complete spawning flow, timeout handling, and error recovery.
 
 ## Codex CLI Judges (--mixed mode)
 
@@ -132,18 +170,21 @@ Codex CLI processes run as background shell commands — this is fine (they're s
 
 ## Timeout Configuration
 
-| Timeout | Default | Description |
-|---------|---------|-------------|
-| Judge timeout | 120s | Max time for judge to complete (per round) |
-| Shutdown grace period | 30s | Time to wait for shutdown acknowledgment |
-| R2 debate timeout | 90s | Max time for R2 after sending debate messages |
+| Timeout | Default | Description | OpenCode |
+|---------|---------|-------------|----------|
+| Judge timeout | 120s | Max time for judge to complete (per round) | ✅ |
+| Shutdown grace period | 30s | Time to wait for shutdown acknowledgment | ❌ No cleanup needed |
+| R2 debate timeout | 90s | Max time for R2 after sending debate messages | ❌ No debate |
 
 ## Model Selection
 
-| Vendor | Default | Override |
-|--------|---------|----------|
+| Vendor / Runtime | Default | Override |
+|------------------|---------|----------|
 | Claude | sonnet | `--claude-model=opus` |
 | Codex | (user's default) | `--codex-model=<model>` or `COUNCIL_CODEX_MODEL` env var |
+| **OpenCode** | **Inherited from parent session** | **Not configurable per-council** — change your session model instead |
+
+**OpenCode important:** Subagents always use the same model as the parent that spawned them. The env vars `COUNCIL_CLAUDE_MODEL`, `COUNCIL_EXPLORER_MODEL`, and `COUNCIL_CODEX_MODEL` have no effect. Do not use `--profile` as it maps to Claude model names. Your council judges will automatically use whatever model you're currently running (e.g., deepseek-v4-flash-free).
 
 ## Output Collection
 
@@ -156,7 +197,7 @@ mkdir -p .agents/council
 .agents/council/YYYY-MM-DD-<target>-judge-1.md
 .agents/council/YYYY-MM-DD-<target>-judge-error-paths.md
 
-# Judge output (R2, when --debate)
+# Judge output (R2, when --debate — not available in OpenCode)
 .agents/council/YYYY-MM-DD-<target>-judge-1-r2.md
 
 # Codex CLI output (--mixed)

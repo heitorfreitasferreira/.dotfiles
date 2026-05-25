@@ -40,10 +40,10 @@ Council works independently — no RPI workflow, no ratchet chain, no `ao` CLI r
 | Mode | Agents | Execution Backend | Use Case |
 |------|--------|-------------------|----------|
 | `--quick` | 0 (inline) | Self | Fast single-agent check, no spawning |
-| default | 2 | Runtime-native (Codex sub-agents preferred; Claude teams fallback) | Independent judges (no perspective labels) |
+| default | 2 | Runtime-native (OpenCode task tool preferred; Claude teams fallback) | Independent judges (no perspective labels) |
 | `--deep` | 3 | Runtime-native | Thorough review |
-| `--mixed` | 3+3 | Runtime-native + Codex CLI | Cross-vendor consensus |
-| `--debate` | 2+ | Runtime-native | Adversarial refinement (2 rounds) |
+| `--mixed` | 3+3 | Runtime-native + Codex CLI | Cross-vendor consensus (not available in OpenCode) |
+| `--debate` | 2+ | Runtime-native | Adversarial refinement (2 rounds, not available in OpenCode) |
 
 ### Spawn Backend (MANDATORY)
 
@@ -55,7 +55,15 @@ Council requires a runtime that can **spawn parallel subagents** and (for `--deb
 
 Skills describe WHAT to do, not WHICH tool to call. See `skills/shared/SKILL.md` for the capability contract.
 
+**Backend detection order (check in this sequence):**
+1. Is `task` tool available AND `TeamCreate`/`spawn_agent` absent? → **OpenCode** (`references/backend-opencode.md`)
+2. Is `TeamCreate` available? → **Claude Native Teams** (`references/backend-claude-teams.md`)
+3. Is `spawn_agent` available? → **Codex Sub-Agents** (`references/backend-codex-subagents.md`)
+4. Is `Task(run_in_background=true)` available? → **Background Tasks** (`references/backend-background-tasks.md`) — last resort for runtimes without native multi-agent support
+5. None of the above? → **Inline** (`references/backend-inline.md`) — `--quick` only
+
 **After detecting your backend, read the matching reference for concrete spawn/wait/message/cleanup examples:**
+- OpenCode (task tool) → `references/backend-opencode.md`
 - Shared Claude feature contract → `skills/shared/references/claude-code-latest-features.md`
 - Local mirrored contract for runtime-local reads → `references/claude-code-latest-features.md`
 - Claude Native Teams → `references/backend-claude-teams.md`
@@ -146,19 +154,19 @@ Core consensus rules: All PASS -> PASS; Any FAIL -> FAIL; Mixed PASS/WARN -> WAR
 
 **Minimum quorum:** 1 agent. **Recommended:** 80% of judges. On timeout, proceed with remaining judges and note in report. On user cancellation, shutdown all judges and generate partial report with INCOMPLETE marker.
 
-| Env var | Default |
-|---------|---------|
-| `COUNCIL_CLAUDE_MODEL` | sonnet |
-| `COUNCIL_EXPLORER_MODEL` | sonnet |
-| `COUNCIL_CODEX_MODEL` | gpt-5.3-codex |
-| `COUNCIL_TIMEOUT` | 120 |
-| `COUNCIL_EXPLORER_TIMEOUT` | 60 |
-| `COUNCIL_R2_TIMEOUT` | 90 |
+| Env var | Default | OpenCode |
+|---------|---------|----------|
+| `COUNCIL_CLAUDE_MODEL` | sonnet | ❌ Sem efeito — modelo é herdado do pai |
+| `COUNCIL_EXPLORER_MODEL` | sonnet | ❌ Sem efeito — modelo é herdado do pai |
+| `COUNCIL_CODEX_MODEL` | gpt-5.3-codex | ❌ Sem efeito — sem Codex CLI |
+| `COUNCIL_TIMEOUT` | 120 | ✅ Usado como timeout máximo por juiz |
+| `COUNCIL_EXPLORER_TIMEOUT` | 60 | ✅ Usado para explorers |
+| `COUNCIL_R2_TIMEOUT` | 90 | ❌ Sem efeito — debate não disponível |
 
-| Flag | Description |
-|------|-------------|
-| `--technique=<name>` | Brainstorm technique (reverse, scamper, six-hats). See `references/brainstorm-techniques.md`. |
-| `--profile=<name>` | Model quality profile (balanced, budget, fast, inherit, quality, thorough). See `references/model-profiles.md`. |
+| Flag | Description | OpenCode |
+|------|-------------|----------|
+| `--technique=<name>` | Brainstorm technique (reverse, scamper, six-hats) | ✅ |
+| `--profile=<name>` | Model quality profile (balanced, budget, fast, inherit, quality, thorough) | ⚠️ Mapeia para modelos Claude — não usar no OpenCode. O modelo é herdado do pai. Ou adicione um profile opencode. |
 
 See [references/flags-reference.md](references/flags-reference.md) for the full flag and environment variable reference (`COUNCIL_TIMEOUT`, `COUNCIL_CODEX_MODEL`, `--deep`, `--mixed`, `--debate`, `--evidence`, `--commit-ready`, `--preset`, `--profile`, and all other flags).
 
@@ -208,6 +216,7 @@ See [references/multi-agent-architecture.md](references/multi-agent-architecture
 - [references/task-type-rigor-gate.md](references/task-type-rigor-gate.md)
 - [references/consensus-and-output.md](references/consensus-and-output.md)
 - [references/model-routing.md](references/model-routing.md)
+- [references/backend-opencode.md](references/backend-opencode.md) — First-class OpenCode backend (task tool)
 - [references/backend-background-tasks.md](references/backend-background-tasks.md)
 - [references/backend-claude-teams.md](references/backend-claude-teams.md)
 - [references/backend-codex-subagents.md](references/backend-codex-subagents.md)
