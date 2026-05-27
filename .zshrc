@@ -16,7 +16,8 @@ source ~/.config/zsh/integrations.zsh
 source ~/.config/zsh/keybindings.zsh
 
 
-source ~/.config/zsh/frete_mercantil.zsh
+# source ~/.config/zsh/frete_mercantil.zsh
+source ~/.config/zsh/siag_mercantil.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
