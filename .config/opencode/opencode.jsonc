@@ -26,6 +26,16 @@
         "AWS_REGION": "us-east-1",
         "AWS_DEFAULT_REGION": "us-east-1"
       }
+    },
+    "banco-siag-erp-local": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://postgres:%40%40agro%40%40@localhost:5432/db_agromercantil"
+      ],
+      "enabled": true
     }
   },
   "agent": {
