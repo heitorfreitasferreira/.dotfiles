@@ -223,4 +223,14 @@ imagine sisyphus happy `.|| ||
       ]]
     end,
   },
+  -- voltar comand line pra versão nativa, sem interferências
+  {
+    "folke/noice.nvim",
+    opts = {
+      cmdline = {
+        enabled = true,
+        view = "cmdline",
+      },
+    },
+  },
 }
