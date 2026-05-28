@@ -1,29 +1,29 @@
 plugin,origem,habilitado,tipo,status_nvim_kickstart
-LazyVim,LazyVim base,sim,distribuicao,sim - coberto por kickstart.nvim
+LazyVim,LazyVim base,sim,distribuicao,sim - coberto por kickstart.nvim / lazyvim.lua shim
 lazy.nvim,LazyVim base,sim,gerenciador de plugins,sim - coberto por vim.pack
 LuaSnip,config local,sim,snippets,sim - plugin exato
 SchemaStore.nvim,LazyVim extra lang.json,sim,LSP/schema,nao
 blink-copilot,config local,sim,IA/completion,nao
 blink.cmp,LazyVim base,sim,completion,sim - plugin exato
 bufferline.nvim,LazyVim base + config local,nao,estilizacao do nvim,nao - desabilitado no antigo
-catppuccin,LazyVim base + config local,sim,colorscheme,sim - coberto por tokyonight.nvim
+catppuccin,LazyVim base + config local,sim,colorscheme,sim - coberto por vscode.nvim
 codeium.nvim,config local,sim,IA/completion,nao
 conform.nvim,LazyVim base,sim,formatacao,sim - plugin exato
 copilot-lsp,config local,sim,IA/LSP,nao
 copilot.lua,config local,sim,IA/completion,nao
-dracula,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
+dracula,config local,sim,colorscheme,sim - coberto por vscode.nvim
 flash.nvim,LazyVim base,sim,navegacao,nao
-flexoki,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
+flexoki,config local,sim,colorscheme,sim - coberto por vscode.nvim
 fold-imports.nvim,config local,sim,manipulacao de codigo,nao
 friendly-snippets,config local,sim,snippets,nao
 gitsigns.nvim,LazyVim base,sim,git,sim - plugin exato
 grug-far.nvim,LazyVim base,sim,busca e substituicao,nao
-harpoon,config local,sim,navegacao/arquivos,nao
+harpoon,config local,sim,navegacao/arquivos,sim - plugin exato
 inc-rename.nvim,LazyVim extra editor.inc-rename,sim,LSP/refactor,sim - coberto por LSP nativo
-jetbrains,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
-kanagawa,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
+jetbrains,config local,sim,colorscheme,sim - coberto por vscode.nvim
+kanagawa,config local,sim,colorscheme,sim - coberto por vscode.nvim
 lazydev.nvim,LazyVim base,sim,LSP/lua,sim - coberto por config lua_ls
-lazydocker.nvim,config local,sim,docker,nao
+lazydocker.nvim,config local,sim,docker,sim - plugin exato
 lualine.nvim,LazyVim base,sim,estilizacao do nvim,sim - coberto por mini.statusline
 markdown-preview.nvim,LazyVim extra lang.markdown,sim,markdown,nao
 mason-lspconfig.nvim,LazyVim base,sim,LSP,sim - plugin exato
@@ -32,38 +32,38 @@ mason.nvim,LazyVim base,sim,gerenciador de ferramentas,sim - plugin exato
 mini.ai,LazyVim base,sim,manipulacao de codigo,sim - plugin exato via mini.nvim
 mini.icons,LazyVim base,sim,estilizacao do nvim,nao
 mini.pairs,LazyVim base,sim,edicao,nao
-monokai-pro,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
+monokai-pro,config local,sim,colorscheme,sim - coberto por vscode.nvim
 neo-tree.nvim,config local,sim,manipulacao de arquivos,sim - coberto por oil.nvim
 noice.nvim,LazyVim base + config local,sim,estilizacao do nvim,nao
 nui.nvim,LazyVim base,sim,UI/dependencia,nao - dependencia nao necessaria com oil.nvim
 nvim-dap,config local,sim,DAP,sim - plugin exato
-nvim-dap-python,LazyVim extra lang.python,sim,DAP/python,nao
+nvim-dap-python,LazyVim extra lang.python,sim,DAP/python,sim - plugin exato
 nvim-dap-ui,config local,sim,DAP/UI,sim - plugin exato
-nvim-dap-virtual-text,config local,sim,DAP/UI,nao
-nvim-jdtls,LazyVim extra lang.java,sim,LSP/java,nao
+nvim-dap-virtual-text,config local,sim,DAP/UI,sim - plugin exato
+nvim-jdtls,LazyVim extra lang.java,sim,LSP/java,sim - plugin exato
 nvim-lint,LazyVim base,sim,lint,sim - plugin exato
 nvim-lspconfig,LazyVim base,sim,LSP,sim - plugin exato
 nvim-nio,config local,sim,DAP/dependencia,sim - plugin exato
 nvim-treesitter,LazyVim base,sim,sintaxe/treesitter,sim - plugin exato
 nvim-treesitter-textobjects,LazyVim base,sim,manipulacao de codigo,nao
 nvim-ts-autotag,LazyVim base,sim,edicao/web,nao
-nyoom,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
-onedark,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
-onioncrab.nvim,plugin local,sim,navegacao/arquivos,nao
+nyoom,config local,sim,colorscheme,sim - coberto por vscode.nvim
+onedark,config local,sim,colorscheme,sim - coberto por vscode.nvim
+onioncrab.nvim,plugin local,sim,navegacao/arquivos,sim - plugin exato
 persistence.nvim,LazyVim base,sim,sessao,nao
 plenary.nvim,LazyVim base,sim,dependencia,sim - plugin exato
 rainbow-delimiters.nvim,config local,sim,estilizacao do codigo,nao
 refactoring.nvim,LazyVim extra editor.refactoring + config local,sim,refactor,sim - coberto por LSP nativo
 render-markdown.nvim,LazyVim extra lang.markdown,sim,markdown/estilizacao,nao
-rose-pine,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
-sidekick.nvim,config local,sim,IA/CLI,nao
+rose-pine,config local,sim,colorscheme,sim - coberto por vscode.nvim
+sidekick.nvim,config local,sim,IA/CLI,sim - plugin exato
 snacks.nvim,LazyVim base + config local,sim,UI/utilitarios,sim - coberto por telescope.nvim / mini.nvim / which-key.nvim
 sonarqube.nvim,config local,sim,qualidade de codigo,nao
-tender,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
+tender,config local,sim,colorscheme,sim - coberto por vscode.nvim
 todo-comments.nvim,LazyVim base,sim,comentarios/tarefas,sim - plugin exato
-tokyonight.nvim,LazyVim base,sim,colorscheme,sim - plugin exato
+tokyonight.nvim,LazyVim base,sim,colorscheme,sim - coberto por vscode.nvim
 trouble.nvim,LazyVim base,sim,diagnosticos,sim - coberto por telescope.nvim / vim.diagnostic
 ts-comments.nvim,LazyVim base,sim,comentarios,nao
-venv-selector.nvim,LazyVim extra lang.python,sim,python/venv,nao
-vscode,config local,sim,colorscheme,sim - coberto por tokyonight.nvim
+venv-selector.nvim,LazyVim extra lang.python,sim,python/venv,sim - plugin exato
+vscode,config local,sim,colorscheme,sim - plugin exato
 which-key.nvim,LazyVim base + config local,sim,keymaps/UI,sim - plugin exato

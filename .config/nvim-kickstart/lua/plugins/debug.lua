@@ -13,6 +13,8 @@ vim.pack.add({
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/jay-babu/mason-nvim-dap.nvim",
 	"https://github.com/leoluz/nvim-dap-go",
+	"https://github.com/mfussenegger/nvim-dap-python",
+	"https://github.com/theHamsta/nvim-dap-virtual-text",
 })
 
 -- Basic debugging keymaps, feel free to change to your liking!
@@ -49,15 +51,29 @@ require("mason-nvim-dap").setup({
 
 	-- You can provide additional configuration to the handlers,
 	-- see mason-nvim-dap README for more information
-	handlers = {},
+	handlers = {
+		python = function() end,
+	},
 
 	-- You'll need to check that you have the required things installed
 	-- online, please don't ask me how to install them :)
 	ensure_installed = {
 		-- Update this to ensure that you have the debuggers for the langs you want
 		"delve",
+		"python",
 	},
 })
+
+require("nvim-dap-virtual-text").setup({})
+
+local debugpy_python = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+require("dap-python").setup(vim.fn.executable(debugpy_python) == 1 and debugpy_python or "python")
+vim.keymap.set("n", "<leader>dPt", function()
+	require("dap-python").test_method()
+end, { desc = "Debug: Python Test Method" })
+vim.keymap.set("n", "<leader>dPc", function()
+	require("dap-python").test_class()
+end, { desc = "Debug: Python Test Class" })
 
 -- Dap UI setup
 -- For more information, see |:help nvim-dap-ui|
