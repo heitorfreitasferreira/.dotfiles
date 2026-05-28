@@ -11,3 +11,4 @@ alias data='cd $HOME/agro-data/ && source venv/bin/activate && fastapi dev app/m
 alias 'cd'='z'
 alias 'cd..'='cd ..'
 alias dc='docker compose'
+alias kickstart='NVIM_APPNAME="nvim-kickstart" nvim'

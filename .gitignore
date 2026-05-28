@@ -4,6 +4,7 @@
 
 /.config/*
 !/.config/nvim/
+!/.config/nvim-kickstart/
 !/.config/opencode/
 !/.config/zsh/
 
