@@ -9,6 +9,7 @@ vim.opthiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.wrap = true
+vim.opt.fileformats = "unix,dos,mac"
 
 -- Fundo transparente (herda do terminal)
 local function set_transparent()
