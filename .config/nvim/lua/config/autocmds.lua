@@ -14,14 +14,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
   once = true,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*.java",
-  group = vim.api.nvim_create_augroup("JavaCompileOnSave", { clear = true }),
-  callback = function()
-    local dir = vim.fn.expand("%:p:h")
-    local pom = vim.fn.findfile("pom.xml", dir .. ";")
-    if pom ~= "" then
-      vim.fn.jobstart({ "mvn", "-f", pom, "compile", "-q" }, { detach = true })
-    end
-  end,
-})
+vim.api.nvim_create_user_command("CompileJava", function()
+  local dir = vim.fn.expand("%:p:h")
+  local pom = vim.fn.findfile("pom.xml", dir .. ";")
+  if pom ~= "" then
+    vim.fn.jobstart({ "mvn", "-f", pom, "compile", "-q" }, { detach = true })
+    vim.notify("Compilando Java: " .. pom, vim.log.levels.INFO)
+  else
+    vim.notify("pom.xml nao encontrado", vim.log.levels.WARN)
+  end
+end, { desc = "Compila o projeto Maven atual via mvn compile -q" })

@@ -30,7 +30,7 @@ vim.keymap.set({ "n", "t", "i", "x" }, "<C-.>", function()
 end, { desc = "Sidekick Toggle" })
 
 vim.keymap.set("n", "<leader>aa", function()
-	require("sidekick.cli").toggle({ name = "opencode", focus = true })
+	require("sidekick.cli").toggle({ name = "cursor", focus = true })
 end, { desc = "Sidekick Toggle CLI" })
 
 vim.keymap.set("n", "<leader>as", function()
@@ -38,17 +38,17 @@ vim.keymap.set("n", "<leader>as", function()
 end, { desc = "Select CLI" })
 
 vim.keymap.set({ "x", "n" }, "<leader>at", function()
-	require("sidekick.cli").send({ msg = "{this}", name = "opencode", focus = true })
+	require("sidekick.cli").send({ msg = "{this}", name = "cursor", focus = true })
 end, { desc = "Send This" })
 
 vim.keymap.set("n", "<leader>af", function()
-	require("sidekick.cli").send({ msg = "{file}", name = "opencode", focus = true })
+	require("sidekick.cli").send({ msg = "{file}", name = "cursor", focus = true })
 end, { desc = "Send File" })
 
 vim.keymap.set("x", "<leader>av", function()
-	require("sidekick.cli").send({ msg = "{selection}", name = "opencode", focus = true })
+	require("sidekick.cli").send({ msg = "{selection}", name = "cursor", focus = true })
 end, { desc = "Send Visual Selection" })
 
 vim.keymap.set({ "n", "x" }, "<leader>ap", function()
-	require("sidekick.cli").prompt({ name = "opencode", focus = true })
+	require("sidekick.cli").prompt({ name = "cursor", focus = true })
 end, { desc = "Sidekick Select Prompt" })

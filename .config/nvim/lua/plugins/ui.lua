@@ -180,6 +180,10 @@ return {
     opts = {
       spec = {
         {
+          "<leader>a",
+          group = "AI",
+        },
+        {
           "<leader>h",
           group = "Harpoon",
         },

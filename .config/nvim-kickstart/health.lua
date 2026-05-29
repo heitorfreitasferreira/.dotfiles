@@ -30,6 +30,23 @@ local check_external_reqs = function()
 		end
 	end
 
+	-- Optional tools used by plugins
+	for _, exe in ipairs({ "lazygit", "lazydocker", "tmux", "opencode", "markdownlint" }) do
+		local is_executable = vim.fn.executable(exe) == 1
+		if is_executable then
+			vim.health.ok(string.format("Found optional tool: '%s'", exe))
+		else
+			vim.health.warn(string.format("Optional tool not found: '%s'. Install it if you use the related features.", exe))
+		end
+	end
+
+	-- Check Java toolchain
+	if vim.fn.executable("mvn") == 1 then
+		vim.health.ok("Found executable: 'mvn'")
+	else
+		vim.health.warn("Could not find executable: 'mvn'. Java builds will not work.")
+	end
+
 	return true
 end
 
