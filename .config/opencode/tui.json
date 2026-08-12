@@ -1,4 +1,17 @@
 {
-  "$schema": "https://opencode.ai/tui.json",
-  "theme": "system"
+    "$schema": "https://opencode.ai/tui.json",
+    "theme": "system",
+    "attention": {
+        "enabled": true,
+        "notifications": true,
+        "sound": true,
+        "volume": 0.5,
+        "sounds": {
+            "question": "/home/heitor/.config/opencode/sounds/question.mp3",
+            "error": "/home/heitor/.config/opencode/sounds/error.mp3",
+        }
+    },
+    "plugin": [
+        "@slkiser/opencode-quota"
+    ]
 }
