@@ -8,6 +8,7 @@ export NVM_DIR="$HOME/.nvm"
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export PATH=/home/heitor/.opencode/bin:$PATH
 
 # opencode
 export PATH=/home/heitor/.opencode/bin:$PATH

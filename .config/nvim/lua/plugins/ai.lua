@@ -43,9 +43,12 @@ return {
         },
         tools = {
           opencode2 = {
-            -- ponytail: --standalone evita o background service,
-            -- que falha ao spawnar o .exe (ENOEXEC) em tmux
-            cmd = { "opencode2", "--standalone" },
+            -- O updater do opencode2 instala em ~/.opencode/bin, que não
+            -- está no PATH do nvim quando aberto fora do shell; caminho
+            -- absoluto garante que sidekick detecte como instalado.
+            -- --standalone evita o background service, que falha ao
+            -- spawnar o binário (ENOEXEC) em tmux
+            cmd = { vim.fs.normalize(vim.env.HOME .. "/.opencode/bin/opencode2"), "--standalone" },
             is_proc = "\\<opencode2\\>",
             native_scroll = true,
           },
