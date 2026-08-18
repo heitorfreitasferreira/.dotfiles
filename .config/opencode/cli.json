@@ -1,0 +1,27 @@
+{
+  "theme": {
+    "name": "system"
+  },
+  "plugins": [
+    "@slkiser/opencode-quota"
+  ],
+  "attention": {
+    "enabled": true,
+    "notifications": true,
+    "sound": true,
+    "volume": 0.5,
+    "sounds": {
+      "question": "/home/heitor/.config/opencode/sounds/question.mp3",
+      "error": "/home/heitor/.config/opencode/sounds/error.mp3"
+    }
+  },
+  "diffs": {
+    "wrap": "word"
+  },
+  "session": {
+    "sidebar": "hide",
+    "scrollbar": false,
+    "thinking": "hide"
+  },
+  "animations": true
+}
