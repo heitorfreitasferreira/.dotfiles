@@ -1,0 +1,189 @@
+{
+  "edit_predictions": {
+    "allow_data_collection": "no"
+  },
+  "ssh_connections": [
+    {
+      "host": "producao",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/etc"
+          ]
+        },
+        {
+          "paths": [
+            "/home/devint/infra-k3s/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/devint/infra/./"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "build",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/srv/./"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "inteligencia",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/etc"
+          ]
+        },
+        {
+          "paths": [
+            "/etc/shells"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "bancos",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/etc/bancos/./"
+          ]
+        },
+        {
+          "paths": [
+            "/opt/bancos/./"
+          ]
+        }
+      ]
+    }
+  ],
+  "which_key": {
+    "enabled": true
+  },
+  "outline_panel": {
+    "dock": "left",
+    "button": false
+  },
+  "collaboration_panel": {
+    "dock": "left",
+    "button": false
+  },
+  "proxy": "",
+  "agent": {
+    "message_editor_min_lines": 2,
+    "terminal_init_command": "",
+    "single_file_review": true,
+    "sidebar_side": "right",
+    "limit_content_width": false,
+    "flexible": true,
+    "dock": "right",
+    "thinking_display": "always_collapsed",
+    "favorite_models": [],
+    "play_sound_when_agent_done": "always",
+    "model_parameters": [],
+    "default_model": {
+      "provider": "opencode",
+      "model": "deepseek-v4.1-flash"
+    }
+  },
+  "project_panel": {
+    "default_width": 300.0,
+    "dock": "left"
+  },
+  "icon_theme": "Zed (Default)",
+  "diff_view_style": "unified",
+  "git_panel": {
+    "group_by": "none",
+    "default_width": 300.0,
+    "dock": "left",
+    "tree_view": true
+  },
+  "vim_mode": true,
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "vim": {
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true
+  },
+  "agent_servers": {
+    "gemini": {
+      "default_mode": "yolo",
+      "type": "registry"
+    },
+    "antigravity-acp": {
+      "default_config_options": {
+        "mode": "yolo"
+      },
+      "type": "registry"
+    },
+    "opencode": {
+      "favorite_config_option_values": {
+        "model": [
+          "opencode-go/muse-spark-1.3-contributor",
+          "opencode/muse-spark-1.3-contributor-free",
+          "opencode-go/deepseek-v4.1-flash"
+        ]
+      },
+      "default_config_options": {
+        "effort": "max",
+        "model": "opencode-go/space-bunny-free",
+        "mode": "build"
+      },
+      "type": "registry"
+    }
+  },
+  "language_models": {
+    "opencode": {
+      "show_zen_models": false,
+      "show_go_models": true
+    },
+    "openai_compatible": {
+      "nvidia": {
+        "api_url": "https://integrate.api.nvidia.com/v1",
+        "available_models": [
+          {
+            "name": "nvidia/nemotron-3-super-120b-a12b",
+            "display_name": "Nemotron 3 Super 120B",
+            "max_tokens": 131072,
+            "max_output_tokens": 32768
+          },
+          {
+            "name": "nvidia/nemotron-3-ultra-550b-a55b",
+            "display_name": "Nemotron 3 Ultra 550B",
+            "max_tokens": 131072,
+            "max_output_tokens": 32768
+          },
+          {
+            "name": "openai/gpt-oss-20b",
+            "display_name": "GPT-OSS 20B",
+            "max_tokens": 131072,
+            "max_output_tokens": 32768
+          },
+          {
+            "name": "z-ai/glm-5.3",
+            "display_name": "GLM 5.3",
+            "max_tokens": 1048576,
+            "max_output_tokens": 32768
+          }
+        ]
+      }
+    }
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Omazed"
+  }
+}
