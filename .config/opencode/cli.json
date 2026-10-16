@@ -1,12 +1,10 @@
 {
+  "$schema": "https://opencode.ai/v2/cli.json",
   "theme": {
-    "name": "system"
+    "name": "opencode",
+    "mode": "system"
   },
-  "plugins": [
-    "@slkiser/opencode-quota"
-  ],
   "attention": {
-    "enabled": true,
     "notifications": true,
     "sound": true,
     "volume": 0.5,

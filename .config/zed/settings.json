@@ -43,11 +43,6 @@
           "paths": [
             "/etc"
           ]
-        },
-        {
-          "paths": [
-            "/etc/shells"
-          ]
         }
       ]
     },
@@ -81,6 +76,13 @@
   },
   "proxy": "",
   "agent": {
+    "sandbox_permissions": {
+      "network_hosts": [
+        "huggingface.co",
+        "nandhakishorm.github.io",
+        "github.com"
+      ]
+    },
     "message_editor_min_lines": 2,
     "terminal_init_command": "",
     "single_file_review": true,
@@ -93,16 +95,17 @@
     "play_sound_when_agent_done": "always",
     "model_parameters": [],
     "default_model": {
-      "provider": "opencode",
-      "model": "deepseek-v4.1-flash"
+      "enable_thinking": false,
+      "provider": "nvidia",
+      "model": "z-ai/glm-5.3"
     }
   },
   "project_panel": {
     "default_width": 300.0,
     "dock": "left"
   },
-  "icon_theme": "Zed (Default)",
-  "diff_view_style": "unified",
+  "icon_theme": "Material Icon Theme",
+  "diff_view_style": "split",
   "git_panel": {
     "group_by": "none",
     "default_width": 300.0,
@@ -118,6 +121,9 @@
     "toggle_relative_line_numbers": true
   },
   "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    },
     "gemini": {
       "default_mode": "yolo",
       "type": "registry"
@@ -129,19 +135,24 @@
       "type": "registry"
     },
     "opencode": {
+      "type": "custom",
+      "command": "/usr/bin/mise",
+      "args": ["exec", "--quiet", "--", "opencode", "acp"],
+      "env": {},
       "favorite_config_option_values": {
         "model": [
           "opencode-go/muse-spark-1.3-contributor",
           "opencode/muse-spark-1.3-contributor-free",
-          "opencode-go/deepseek-v4.1-flash"
+          "opencode-go/deepseek-v4.1-flash",
+          "opencode-go/space-bunny-free",
+          "opencode-go/space-bunny"
         ]
       },
       "default_config_options": {
-        "effort": "max",
-        "model": "opencode-go/space-bunny-free",
-        "mode": "build"
-      },
-      "type": "registry"
+        "effort": "default",
+        "model": "opencode/muse-spark-1.3-contributor-free",
+        "mode": "plan"
+      }
     }
   },
   "language_models": {
